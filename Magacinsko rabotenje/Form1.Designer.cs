@@ -112,18 +112,18 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(572, 314);
+            this.button6.Location = new System.Drawing.Point(388, 372);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 22);
+            this.button6.Size = new System.Drawing.Size(259, 22);
             this.button6.TabIndex = 6;
-            this.button6.Text = "Избриши магацин";
+            this.button6.Text = "Избриши производ";
             this.button6.UseVisualStyleBackColor = true;
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(178, 314);
+            this.button5.Location = new System.Drawing.Point(16, 372);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 22);
+            this.button5.Size = new System.Drawing.Size(237, 22);
             this.button5.TabIndex = 5;
             this.button5.Text = "Избриши магацин";
             this.button5.UseVisualStyleBackColor = true;
@@ -131,27 +131,27 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(479, 314);
+            this.button3.Location = new System.Drawing.Point(388, 343);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.Size = new System.Drawing.Size(259, 23);
             this.button3.TabIndex = 4;
-            this.button3.Text = "Избриши магацин";
+            this.button3.Text = "Измени производ";
             this.button3.UseVisualStyleBackColor = true;
             // 
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(388, 314);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.Size = new System.Drawing.Size(259, 23);
             this.button4.TabIndex = 3;
-            this.button4.Text = "Додади магацин";
+            this.button4.Text = "Додади производ";
             this.button4.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(97, 314);
+            this.button2.Location = new System.Drawing.Point(16, 343);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(237, 23);
             this.button2.TabIndex = 2;
             this.button2.Text = "Измени магацин";
             this.button2.UseVisualStyleBackColor = true;
@@ -161,7 +161,7 @@
             // 
             this.button1.Location = new System.Drawing.Point(16, 314);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(237, 23);
             this.button1.TabIndex = 1;
             this.button1.Text = "Додади магацин";
             this.button1.UseVisualStyleBackColor = true;
