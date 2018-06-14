@@ -1,0 +1,8 @@
+CREATE PROC WarehouseViewAllorSearch
+@SearchText varchar(200)
+AS BEGIN
+SELECT  
+FROM Warehouse
+WHERE @SearchText='' OR
+	NAME LIKE '%'+@SearchText+'%'
+END

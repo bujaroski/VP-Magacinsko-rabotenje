@@ -1,0 +1,25 @@
+CREATE PROC WarehouseAddorEdit
+@ID int,
+@Name varchar(200)
+AS
+BEGIN
+IF(@ID = 0)
+BEGIN
+	INSERT INTO Warehouse
+	(
+	Name
+	)
+	VALUES
+	(
+	@Name
+	)
+END
+ELSE
+BEGIN
+	UPDATE Warehouse
+	SET
+	Name = @Name
+	WHERE  ID = @ID
+END
+
+END

@@ -1,0 +1,8 @@
+CREATE PROC ProductViewAllorSearch
+@SearchText varchar(100)
+AS BEGIN
+SELECT *
+FROM Product
+WHERE @SearchText='' OR
+	NAME LIKE '%'+@SearchText+'%'
+END

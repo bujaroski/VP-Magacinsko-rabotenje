@@ -45,11 +45,11 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbKolicina = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cbProizvodi = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbMagacini = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.lbFakturi = new System.Windows.Forms.ListBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -118,6 +118,7 @@
             this.button6.TabIndex = 6;
             this.button6.Text = "Избриши производ";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button5
             // 
@@ -137,6 +138,7 @@
             this.button3.TabIndex = 4;
             this.button3.Text = "Измени производ";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
@@ -146,6 +148,7 @@
             this.button4.TabIndex = 3;
             this.button4.Text = "Додади производ";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button2
             // 
@@ -209,11 +212,11 @@
             // 
             this.groupBox1.Controls.Add(this.monthCalendar1);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.tbKolicina);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.comboBox2);
+            this.groupBox1.Controls.Add(this.cbProizvodi);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.cbMagacini);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(6, 21);
             this.groupBox1.Name = "groupBox1";
@@ -237,13 +240,13 @@
             this.label6.TabIndex = 8;
             this.label6.Text = "Избери датум";
             // 
-            // textBox1
+            // tbKolicina
             // 
-            this.textBox1.Location = new System.Drawing.Point(6, 161);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 7;
-            this.textBox1.Text = "1";
+            this.tbKolicina.Location = new System.Drawing.Point(6, 161);
+            this.tbKolicina.Name = "tbKolicina";
+            this.tbKolicina.Size = new System.Drawing.Size(100, 20);
+            this.tbKolicina.TabIndex = 7;
+            this.tbKolicina.Text = "1";
             // 
             // label5
             // 
@@ -254,13 +257,13 @@
             this.label5.TabIndex = 6;
             this.label5.Text = "Внеси количина";
             // 
-            // comboBox2
+            // cbProizvodi
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(6, 100);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(223, 21);
-            this.comboBox2.TabIndex = 3;
+            this.cbProizvodi.FormattingEnabled = true;
+            this.cbProizvodi.Location = new System.Drawing.Point(6, 100);
+            this.cbProizvodi.Name = "cbProizvodi";
+            this.cbProizvodi.Size = new System.Drawing.Size(223, 21);
+            this.cbProizvodi.TabIndex = 3;
             // 
             // label4
             // 
@@ -271,13 +274,13 @@
             this.label4.TabIndex = 4;
             this.label4.Text = "Избери производ";
             // 
-            // comboBox1
+            // cbMagacini
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(6, 48);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(223, 21);
-            this.comboBox1.TabIndex = 1;
+            this.cbMagacini.FormattingEnabled = true;
+            this.cbMagacini.Location = new System.Drawing.Point(6, 48);
+            this.cbMagacini.Name = "cbMagacini";
+            this.cbMagacini.Size = new System.Drawing.Size(223, 21);
+            this.cbMagacini.TabIndex = 1;
             // 
             // label3
             // 
@@ -313,7 +316,7 @@
             this.ClientSize = new System.Drawing.Size(822, 481);
             this.Controls.Add(this.Magacini);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Магацинско работење";
             this.Magacini.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -341,15 +344,15 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbMagacini;
         private System.Windows.Forms.ListBox lbFakturi;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.MonthCalendar monthCalendar1;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbKolicina;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cbProizvodi;
         private System.Windows.Forms.Label label4;
     }
 }

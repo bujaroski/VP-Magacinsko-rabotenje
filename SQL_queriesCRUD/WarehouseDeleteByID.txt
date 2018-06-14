@@ -1,0 +1,6 @@
+CREATE PROC WarehouseDeleteByID
+@ID int
+AS BEGIN
+DELETE FROM Warehouse
+WHERE ID = @ID
+END

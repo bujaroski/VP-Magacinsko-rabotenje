@@ -21,7 +21,10 @@ namespace Magacinsko_rabotenje
             InitializeComponent();
             listWarehouses();
             lbMagacini.SelectedItem = null;
+            listProducts();
+            lbProizvodVoMagacin.SelectedItem = null;
         } 
+        
 
         void listWarehouses()
         {
@@ -30,8 +33,19 @@ namespace Magacinsko_rabotenje
             List<Warehouse> list = sqlCon.Query<Warehouse>("WarehouseViewAllOrSearch", param,
                 commandType: CommandType.StoredProcedure).ToList<Warehouse>();
             lbMagacini.DataSource = list;
+            cbMagacini.DataSource = list;
         }
-        
+
+        void listProducts()
+        {
+            DynamicParameters param = new DynamicParameters();
+            param.Add("@SearchText", "");
+            List<Product> list = sqlCon.Query<Product>("ProductViewAllOrSearch", param,
+                commandType: CommandType.StoredProcedure).ToList<Product>();
+            lbProizvodVoMagacin.DataSource = list;
+            cbProizvodi.DataSource = list;
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             AddWarehouseForm form2 = new AddWarehouseForm();
@@ -68,6 +82,49 @@ namespace Magacinsko_rabotenje
             {
                 WarehouseAdapterSQL.DeleteFromDatabase(lbMagacini);
                 listWarehouses();
+            }
+            else
+            {
+                MessageBox.Show("Ве молиме одберете магацин од листата", "Одберете магацин");
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            ProductAddForm form2 = new ProductAddForm();
+            form2.Text = "Додади нов продукт";
+            if (form2.ShowDialog() == DialogResult.OK)
+            {
+                ProductAdapterSQL.SaveToDatabase(form2.product);
+                listProducts();
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            ProductAddForm form2 = new ProductAddForm();
+            form2.Text = "Измени продукт";
+
+            if (lbProizvodVoMagacin.SelectedIndex != -1)
+            {
+                if (form2.ShowDialog() == DialogResult.OK)
+                {
+                    ProductAdapterSQL.EditToDatabase(form2.product, lbProizvodVoMagacin);
+                    listProducts();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Ве молиме одберете продукт од листата", "Одберете продукт");
+            }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (lbProizvodVoMagacin.SelectedItem != null)
+            {
+                ProductAdapterSQL.DeleteFromDatabase(lbProizvodVoMagacin);
+                listProducts();
             }
             else
             {

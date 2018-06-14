@@ -1,35 +1,35 @@
-﻿using System;
+﻿using Dapper;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Dapper;
 
 namespace Magacinsko_rabotenje
 {
-    public class WarehouseAdapterSQL
+    public class ProductAdapterSQL
     {
         public static SqlConnection sqlCon = new SqlConnection(@"Data Source=DESKTOP-AGB019C\SQLEXPRESS;initial Catalog=MarketEvidence;Integrated Security=True");
         public static int id = 0;
 
-        public static void SaveToDatabase(Warehouse warehouse)
+        public static void SaveToDatabase(Product product)
         {
-            
             try
             {
                 SqlCommand cmd;
                 if (sqlCon.State == ConnectionState.Closed)
                     sqlCon.Open();
                 DynamicParameters param = new DynamicParameters();
-                param.Add("@ID", id);
-                param.Add("@Name", warehouse.Name);
-                cmd = new SqlCommand("insert into Warehouse(Name) values(@Name)", sqlCon);
-                sqlCon.Execute("WarehouseAddorEdit", param, commandType: CommandType.StoredProcedure);
+                param.Add("@Code", id);
+                param.Add("@Name", product.Name);
+                param.Add("@Descriptionn", product.Descriptionn);
+                param.Add("@Price", product.Price);
+                param.Add("@quantity", product.quantity);
+                cmd = new SqlCommand("insert into Product(Name,Descriptionn,Price,Quantity) values(@Name,@Descriptionn,@Price,@Quantity)", sqlCon);
+                sqlCon.Execute("ProductAddorEdit", param, commandType: CommandType.StoredProcedure);
             }
             catch (Exception ex)
             {
@@ -42,8 +42,8 @@ namespace Magacinsko_rabotenje
             }
         }
 
-        public static void EditToDatabase(Warehouse warehouse,ListBox lbMagacini)
-        { 
+        public static void EditToDatabase(Product product, ListBox lbProizvodi)
+        {
             SqlCommand cmd;
             try
             {
@@ -52,11 +52,14 @@ namespace Magacinsko_rabotenje
                 DynamicParameters param = new DynamicParameters();
                 //param.Add("@ID", id);
                 //param.Add("@Name", form2.wh);
-                cmd = new SqlCommand("update Warehouse set Name=@Name where ID=@ID", sqlCon);
+                cmd = new SqlCommand("update Product set Name=@Name, Descriptionn=@Descriptionn, Price=@Price, quantity=@quantity where Code=@Code", sqlCon);
                 //sqlCon.Execute("WarehouseAddorEdit", param, commandType: CommandType.StoredProcedure);
-                Warehouse nov = (Warehouse)lbMagacini.SelectedItem;
-                cmd.Parameters.AddWithValue("@ID", nov.ID);
-                cmd.Parameters.AddWithValue("@Name", warehouse.Name);
+                Product nov = (Product)lbProizvodi.SelectedItem;
+                cmd.Parameters.AddWithValue("@Code", nov.Code);
+                cmd.Parameters.AddWithValue("@Name", product.Name);
+                cmd.Parameters.AddWithValue("@Descriptionn", product.Descriptionn);
+                cmd.Parameters.AddWithValue("@Price", product.Price);
+                cmd.Parameters.AddWithValue("@quantity", product.quantity);
                 cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
@@ -70,16 +73,16 @@ namespace Magacinsko_rabotenje
             }
         }
 
-        public static void DeleteFromDatabase(ListBox lbMagacini)
+        public static void DeleteFromDatabase(ListBox lbProizvodi)
         {
             SqlCommand cmd;
             sqlCon.Open();
-            cmd = new SqlCommand("delete Warehouse where ID=@ID", sqlCon);
-            Warehouse warehouse = (Warehouse)lbMagacini.SelectedItem;
-            cmd.Parameters.AddWithValue("@ID", warehouse.ID);
+            cmd = new SqlCommand("delete Product where Code=@Code", sqlCon);
+            Product product = (Product)lbProizvodi.SelectedItem;
+            cmd.Parameters.AddWithValue("@Code", product.Code);
             cmd.ExecuteNonQuery();
             sqlCon.Close();
-            
+
         }
     }
 }

@@ -1,0 +1,37 @@
+CREATE PROC ProductAddorEdit
+@Code int,
+@Name varchar(100),
+@Descriptionn varchar(1000),
+@Price int,
+@quantity int
+AS
+BEGIN
+IF(@Code = 0)
+BEGIN
+	INSERT INTO Product
+	(
+	Name,
+	Descriptionn,
+	Price,
+	quantity
+	)
+	VALUES
+	(
+	@Name,
+	@Descriptionn,
+	@Price,
+	@quantity
+	)
+END
+ELSE
+BEGIN
+	UPDATE Product
+	SET
+	Name = @Name,
+	Descriptionn = @Descriptionn,
+	Price = Price,
+	quantity = @quantity
+	WHERE  Code = @Code
+END
+
+END
