@@ -27,12 +27,15 @@ namespace Magacinsko_rabotenje
         {
             try
             {
+                SqlCommand cmd;
                 if (sqlCon.State == ConnectionState.Closed)
                     sqlCon.Open();
                 DynamicParameters param = new DynamicParameters();
                 param.Add("@ID", id);
                 param.Add("@Name", warehouse.Name);
+                cmd = new SqlCommand("insert into Warehouse(Name) values(@Name)", sqlCon);
                 sqlCon.Execute("WarehouseAddorEdit", param, commandType: CommandType.StoredProcedure);
+                listWarehouses();
 
             }
             catch (Exception ex)
@@ -66,38 +69,70 @@ namespace Magacinsko_rabotenje
         
         private void button2_Click(object sender, EventArgs e)
         {
-            EditWarehouse form2 = new EditWarehouse();
+            AddWarehouseForm form2 = new AddWarehouseForm();
+            form2.Text = "Измени магацин";
             
-            if(lbMagacini.SelectedIndex != -1)
+            if (lbMagacini.SelectedIndex != -1)
             {
                 if (form2.ShowDialog() == DialogResult.OK)
                 {
-                    SaveToDatabase(form2.wh);
+                    SqlCommand cmd;
+                    try
+                    {
+                        if (sqlCon.State == ConnectionState.Closed)
+                            sqlCon.Open();
+                        DynamicParameters param = new DynamicParameters();
+                        //param.Add("@ID", id);
+                        //param.Add("@Name", form2.wh);
+                        cmd = new SqlCommand("update Warehouse set Name=@Name where ID=@ID", sqlCon);
+                        //sqlCon.Execute("WarehouseAddorEdit", param, commandType: CommandType.StoredProcedure);
+                        Warehouse nov = (Warehouse)lbMagacini.SelectedItem;
+                        
+                        cmd.Parameters.AddWithValue("@ID", nov.ID);
+                        cmd.Parameters.AddWithValue("@Name", form2.magacin.Name);
+                        
+                        cmd.ExecuteNonQuery();
+                        listWarehouses();
+
+                    }
+                    catch (Exception ex)
+                    {
+
+                        MessageBox.Show(ex.Message);
+                    }
+                    finally
+                    {
+                        sqlCon.Close();
+                    }
                 }
             }
             else
             {
                 MessageBox.Show("Ве молиме одберете магацин од листата", "Одберете магацин");
             }
-            
+
+           
+
+
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            try
+            SqlCommand cmd;
+            SqlConnection sqlCon = new SqlConnection(@"Data Source=DESKTOP-AGB019C\SQLEXPRESS;initial Catalog=MarketEvidence;Integrated Security=True");
+            if (lbMagacini.SelectedItem != null)
             {
-                DynamicParameters param = new DynamicParameters();
-                param.Add("@ID", id);
-                sqlCon.Execute("WarehouseDeleteByID",param,commandType:CommandType.StoredProcedure);
+                sqlCon.Open();
+                cmd = new SqlCommand("delete Warehouse where ID=@ID", sqlCon);
+                Warehouse warehouse = (Warehouse)lbMagacini.SelectedItem;
+                cmd.Parameters.AddWithValue("@ID", warehouse.ID);
+                cmd.ExecuteNonQuery();
+                sqlCon.Close();
                 listWarehouses();
             }
-            catch(Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                sqlCon.Close();
+                MessageBox.Show("Ве молиме одберете магацин од листата", "Одберете магацин");
             }
         }
     }

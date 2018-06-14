@@ -54,12 +54,6 @@
     <Compile Include="AddWarehouseForm.Designer.cs">
       <DependentUpon>AddWarehouseForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditWarehouse.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="EditWarehouse.Designer.cs">
-      <DependentUpon>EditWarehouse.cs</DependentUpon>
-    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,9 +65,6 @@
     <Compile Include="Warehouse.cs" />
     <EmbeddedResource Include="AddWarehouseForm.resx">
       <DependentUpon>AddWarehouseForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="EditWarehouse.resx">
-      <DependentUpon>EditWarehouse.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
