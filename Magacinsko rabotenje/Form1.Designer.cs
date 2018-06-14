@@ -89,7 +89,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(783, 431);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Магацин";
+            this.tabPage1.Text = "Магацини";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // label2
@@ -127,6 +127,7 @@
             this.button5.TabIndex = 5;
             this.button5.Text = "Избриши магацин";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button3
             // 
@@ -152,8 +153,9 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 2;
-            this.button2.Text = "Избриши магацин";
+            this.button2.Text = "Измени магацин";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -191,7 +193,7 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(783, 431);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.Text = "Фактури";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // button7
