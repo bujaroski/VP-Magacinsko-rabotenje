@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Magacinsko rabotenje", "Magacinsko rabotenje\Magacinsko rabotenje.csproj", "{B7761312-58AE-46F9-950E-1BAF94F7BDED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B7761312-58AE-46F9-950E-1BAF94F7BDED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7761312-58AE-46F9-950E-1BAF94F7BDED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7761312-58AE-46F9-950E-1BAF94F7BDED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7761312-58AE-46F9-950E-1BAF94F7BDED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1A66CFF3-94EE-479B-884A-B2338882BAEA}
+	EndGlobalSection
+EndGlobal
