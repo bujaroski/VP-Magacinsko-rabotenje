@@ -14,7 +14,7 @@ namespace Magacinsko_rabotenje
 {
     public class WarehouseAdapterSQL
     {
-        public static SqlConnection sqlCon = new SqlConnection(@"Data Source=DESKTOP-AGB019C\SQLEXPRESS;initial Catalog=MarketEvidence;Integrated Security=True");
+        public static SqlConnection sqlCon = new SqlConnection(@"Data Source=DESKTOP-0S9U6FP\MSSQLSERVER2014;initial Catalog=MarketEvidence;Integrated Security=True");
         public static int id = 0;
 
         public static void SaveToDatabase(Warehouse warehouse)

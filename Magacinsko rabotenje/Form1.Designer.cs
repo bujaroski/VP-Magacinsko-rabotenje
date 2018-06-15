@@ -53,6 +53,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lbFakturi = new System.Windows.Forms.ListBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label7 = new System.Windows.Forms.Label();
             this.Magacini.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -74,6 +75,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.label7);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.button6);
@@ -185,6 +187,7 @@
             this.lbMagacini.Name = "lbMagacini";
             this.lbMagacini.Size = new System.Drawing.Size(237, 277);
             this.lbMagacini.TabIndex = 0;
+            this.lbMagacini.SelectedIndexChanged += new System.EventHandler(this.lbMagacini_SelectedIndexChanged);
             // 
             // tabPage2
             // 
@@ -309,6 +312,15 @@
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(385, 397);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(35, 13);
+            this.label7.TabIndex = 9;
+            this.label7.Text = "label7";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -354,6 +366,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cbProizvodi;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label7;
     }
 }
 

@@ -14,7 +14,8 @@ namespace Magacinsko_rabotenje
 {
     public partial class Form1 : Form
     {
-        SqlConnection sqlCon = new SqlConnection(@"Data Source=DESKTOP-AGB019C\SQLEXPRESS;initial Catalog=MarketEvidence;Integrated Security=True");
+        SqlDataAdapter adapt;
+        SqlConnection sqlCon = new SqlConnection(@"Data Source=DESKTOP-0S9U6FP\MSSQLSERVER2014;initial Catalog=MarketEvidence;Integrated Security=True");
         int id = 0;
         public Form1()
         {
@@ -91,13 +92,22 @@ namespace Magacinsko_rabotenje
 
         private void button4_Click(object sender, EventArgs e)
         {
-            ProductAddForm form2 = new ProductAddForm();
-            form2.Text = "Додади нов продукт";
-            if (form2.ShowDialog() == DialogResult.OK)
+            if(lbMagacini.SelectedIndex == -1)
             {
-                ProductAdapterSQL.SaveToDatabase(form2.product);
-                listProducts();
+                MessageBox.Show("Odberete magacin");
             }
+            else
+            {
+                ProductAddForm form2 = new ProductAddForm();
+                form2.Text = "Додади нов продукт";
+                if (form2.ShowDialog() == DialogResult.OK)
+                {
+                    Warehouse warehouse = (Warehouse)lbMagacini.SelectedItem;
+                    ProductAdapterSQL.SaveToDatabase(form2.product, warehouse);
+                    listProducts();
+                }
+            }
+           
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -131,5 +141,25 @@ namespace Magacinsko_rabotenje
                 MessageBox.Show("Ве молиме одберете магацин од листата", "Одберете магацин");
             }
         }
+
+        private void lbMagacini_SelectedIndexChanged(object sender, EventArgs e)
+        {
+          if(lbMagacini.SelectedItem != null)
+            {
+                DynamicParameters param = new DynamicParameters();
+                Warehouse w = (Warehouse)lbMagacini.SelectedItem;
+                int index = w.ID;
+
+                param.Add("@ID", index);
+
+                List<Product> list = sqlCon.Query<Product>("ProductWarehouseList", param,
+                    commandType: CommandType.StoredProcedure).ToList();
+
+                lbProizvodVoMagacin.DataSource = list;
+            }
+           
+            
+        }
+        
     }
 }

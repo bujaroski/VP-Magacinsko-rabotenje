@@ -1,0 +1,8 @@
+﻿CREATE PROC ProductWarehouseList
+@SearchText varchar(200)
+AS BEGIN
+SELECT *
+FROM Products P 
+INNER JOIN Warehouse_Product wp ON p.Code = wp.ProductId
+INNER JOIN Warehouse w ON w.ID= wp.ProductId
+END

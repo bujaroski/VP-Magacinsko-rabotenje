@@ -12,24 +12,54 @@ namespace Magacinsko_rabotenje
 {
     public class ProductAdapterSQL
     {
-        public static SqlConnection sqlCon = new SqlConnection(@"Data Source=DESKTOP-AGB019C\SQLEXPRESS;initial Catalog=MarketEvidence;Integrated Security=True");
+        public static SqlConnection sqlCon = new SqlConnection(@"Data Source=DESKTOP-0S9U6FP\MSSQLSERVER2014;initial Catalog=MarketEvidence;Integrated Security=True");
         public static int id = 0;
 
-        public static void SaveToDatabase(Product product)
+        public static void SaveToDatabase(Product product,Warehouse warehouse)
         {
             try
             {
-                SqlCommand cmd;
+                
                 if (sqlCon.State == ConnectionState.Closed)
                     sqlCon.Open();
                 DynamicParameters param = new DynamicParameters();
-                param.Add("@Code", id);
+                DynamicParameters param1 = new DynamicParameters();
+               
+                
+
+               
                 param.Add("@Name", product.Name);
-                param.Add("@Descriptionn", product.Descriptionn);
+                param.Add("@Description", product.Descriptionn);
                 param.Add("@Price", product.Price);
                 param.Add("@quantity", product.quantity);
-                cmd = new SqlCommand("insert into Product(Name,Descriptionn,Price,Quantity) values(@Name,@Descriptionn,@Price,@Quantity)", sqlCon);
-                sqlCon.Execute("ProductAddorEdit", param, commandType: CommandType.StoredProcedure);
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "InsertIntoProducts";
+                
+                cmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = product.Name;
+                cmd.Parameters.Add("@Description", SqlDbType.VarChar).Value = product.Descriptionn;
+                cmd.Parameters.Add("@Price", SqlDbType.Int).Value = product.Price;
+                cmd.Parameters.Add("@quantity", SqlDbType.VarChar).Value = product.quantity;
+                cmd.Parameters.Add("@Code", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.Connection = sqlCon;
+                cmd.ExecuteNonQuery();
+
+                SqlCommand cmd1 = new SqlCommand();
+                cmd1.CommandType = CommandType.StoredProcedure;
+                cmd1.CommandText = "InsertIntoWarehouseProduct";
+                int id = Convert.ToInt32(cmd.Parameters["@Code"].Value.ToString());
+                cmd1.Parameters.Add("@WarehouseeId", SqlDbType.Int).Value = warehouse.ID;
+                cmd1.Parameters.Add("@Code", SqlDbType.Int).Value = id;
+                cmd1.Connection = sqlCon;
+                cmd1.ExecuteNonQuery();
+               
+                MessageBox.Show("You did itt !!!");
+
+               
+                
+
+                
             }
             catch (Exception ex)
             {

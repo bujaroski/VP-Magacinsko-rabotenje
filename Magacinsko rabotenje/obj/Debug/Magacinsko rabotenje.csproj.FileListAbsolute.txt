@@ -22,3 +22,17 @@ C:\Users\Ivan\Desktop\vp-proekt\VP-Magacinsko-rabotenje\Magacinsko rabotenje\bin
 C:\Users\Ivan\Desktop\vp-proekt\VP-Magacinsko-rabotenje\Magacinsko rabotenje\bin\Debug\Dapper.xml
 C:\Users\Ivan\Desktop\vp-proekt\VP-Magacinsko-rabotenje\Magacinsko rabotenje\obj\Debug\Magacinsko_rabotenje.AddWarehouseForm.resources
 C:\Users\Ivan\Desktop\vp-proekt\VP-Magacinsko-rabotenje\Magacinsko rabotenje\obj\Debug\Magacinsko_rabotenje.ProductAddForm.resources
+C:\Users\aleks\Desktop\Proekt VP\VP-Magacinsko-rabotenje\Magacinsko rabotenje\bin\Debug\Magacinsko rabotenje.exe.config
+C:\Users\aleks\Desktop\Proekt VP\VP-Magacinsko-rabotenje\Magacinsko rabotenje\bin\Debug\Magacinsko rabotenje.exe
+C:\Users\aleks\Desktop\Proekt VP\VP-Magacinsko-rabotenje\Magacinsko rabotenje\bin\Debug\Magacinsko rabotenje.pdb
+C:\Users\aleks\Desktop\Proekt VP\VP-Magacinsko-rabotenje\Magacinsko rabotenje\bin\Debug\Dapper.dll
+C:\Users\aleks\Desktop\Proekt VP\VP-Magacinsko-rabotenje\Magacinsko rabotenje\bin\Debug\Dapper.xml
+C:\Users\aleks\Desktop\Proekt VP\VP-Magacinsko-rabotenje\Magacinsko rabotenje\obj\Debug\Magacinsko_rabotenje.AddWarehouseForm.resources
+C:\Users\aleks\Desktop\Proekt VP\VP-Magacinsko-rabotenje\Magacinsko rabotenje\obj\Debug\Magacinsko_rabotenje.Form1.resources
+C:\Users\aleks\Desktop\Proekt VP\VP-Magacinsko-rabotenje\Magacinsko rabotenje\obj\Debug\Magacinsko_rabotenje.ProductAddForm.resources
+C:\Users\aleks\Desktop\Proekt VP\VP-Magacinsko-rabotenje\Magacinsko rabotenje\obj\Debug\Magacinsko_rabotenje.Properties.Resources.resources
+C:\Users\aleks\Desktop\Proekt VP\VP-Magacinsko-rabotenje\Magacinsko rabotenje\obj\Debug\Magacinsko rabotenje.csproj.GenerateResource.Cache
+C:\Users\aleks\Desktop\Proekt VP\VP-Magacinsko-rabotenje\Magacinsko rabotenje\obj\Debug\Magacinsko rabotenje.csproj.CoreCompileInputs.cache
+C:\Users\aleks\Desktop\Proekt VP\VP-Magacinsko-rabotenje\Magacinsko rabotenje\obj\Debug\Magacinsko rabotenje.exe
+C:\Users\aleks\Desktop\Proekt VP\VP-Magacinsko-rabotenje\Magacinsko rabotenje\obj\Debug\Magacinsko rabotenje.pdb
+C:\Users\aleks\Desktop\Proekt VP\VP-Magacinsko-rabotenje\Magacinsko rabotenje\obj\Debug\Magacinsko rabotenje.csprojResolveAssemblyReference.cache
