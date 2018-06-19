@@ -20,8 +20,19 @@ namespace Magacinsko_rabotenje
 
         private void button1_Click(object sender, EventArgs e)
         {
-            magacin = new Warehouse(textBox1.Text);
-            DialogResult = System.Windows.Forms.DialogResult.OK;
+             magacin = new Warehouse(txtImeMagacin.Text);
+             Form1.IzmeniMagacin = false;
+             DialogResult = DialogResult.OK;
+             
+  
+        }
+
+        private void AddWarehouseForm_Shown(object sender, EventArgs e)
+        {
+            if (Form1.IzmeniMagacin)
+            {
+                txtImeMagacin.Text = Form1.Magacin.Name;
+            }
         }
     }
 }

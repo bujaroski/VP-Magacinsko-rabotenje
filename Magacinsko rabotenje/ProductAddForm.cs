@@ -18,10 +18,23 @@ namespace Magacinsko_rabotenje
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            product = new Product(textBox1.Text, textBox2.Text, Convert.ToInt32(numericUpDown1.Value), Convert.ToInt32(numericUpDown2.Value));
+       
 
+        private void ProductAddForm_Shown(object sender, EventArgs e)
+        {
+            if (Form1.IzmeniProizvod)
+            {
+                tbIme.Text = Form1.Proizvod.Name;
+                tbOpis.Text = Form1.Proizvod.Descriptionn;
+                nudCena.Value = Form1.Proizvod.Price;
+                nudKolicina.Value = Form1.Proizvod.quantity;
+            }
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            product = new Product(tbIme.Text, tbOpis.Text, Convert.ToInt32(nudCena.Value), Convert.ToInt32(nudKolicina.Value));
+            Form1.IzmeniProizvod = false;
             DialogResult = System.Windows.Forms.DialogResult.OK;
         }
     }

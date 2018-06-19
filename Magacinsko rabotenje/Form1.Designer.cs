@@ -30,14 +30,15 @@
         {
             this.Magacini = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label7 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnIzbrisiProizvod = new System.Windows.Forms.Button();
+            this.btnIzbrisiMagacin = new System.Windows.Forms.Button();
+            this.btnIzmeniProizvod = new System.Windows.Forms.Button();
+            this.btnDodadiProizvod = new System.Windows.Forms.Button();
+            this.btnIzmeniMagacin = new System.Windows.Forms.Button();
+            this.btnDodadiMagacin = new System.Windows.Forms.Button();
             this.lbProizvodVoMagacin = new System.Windows.Forms.ListBox();
             this.lbMagacini = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -53,11 +54,21 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lbFakturi = new System.Windows.Forms.ListBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.label7 = new System.Windows.Forms.Label();
+            this.btnDodadi = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.tbIme = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.tbOpis = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.tbCena = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.tbKolicina1 = new System.Windows.Forms.TextBox();
             this.Magacini.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // Magacini
@@ -70,7 +81,7 @@
             this.Magacini.Location = new System.Drawing.Point(12, 12);
             this.Magacini.Name = "Magacini";
             this.Magacini.SelectedIndex = 0;
-            this.Magacini.Size = new System.Drawing.Size(791, 457);
+            this.Magacini.Size = new System.Drawing.Size(848, 457);
             this.Magacini.TabIndex = 0;
             // 
             // tabPage1
@@ -78,21 +89,30 @@
             this.tabPage1.Controls.Add(this.label7);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Controls.Add(this.button6);
-            this.tabPage1.Controls.Add(this.button5);
-            this.tabPage1.Controls.Add(this.button3);
-            this.tabPage1.Controls.Add(this.button4);
-            this.tabPage1.Controls.Add(this.button2);
-            this.tabPage1.Controls.Add(this.button1);
+            this.tabPage1.Controls.Add(this.btnIzbrisiProizvod);
+            this.tabPage1.Controls.Add(this.btnIzbrisiMagacin);
+            this.tabPage1.Controls.Add(this.btnIzmeniProizvod);
+            this.tabPage1.Controls.Add(this.btnDodadiProizvod);
+            this.tabPage1.Controls.Add(this.btnIzmeniMagacin);
+            this.tabPage1.Controls.Add(this.btnDodadiMagacin);
             this.tabPage1.Controls.Add(this.lbProizvodVoMagacin);
             this.tabPage1.Controls.Add(this.lbMagacini);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(783, 431);
+            this.tabPage1.Size = new System.Drawing.Size(840, 431);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Магацини";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(385, 397);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(35, 13);
+            this.label7.TabIndex = 9;
+            this.label7.Text = "label7";
             // 
             // label2
             // 
@@ -112,65 +132,65 @@
             this.label1.TabIndex = 7;
             this.label1.Text = "Листа на магацини:";
             // 
-            // button6
+            // btnIzbrisiProizvod
             // 
-            this.button6.Location = new System.Drawing.Point(388, 372);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(259, 22);
-            this.button6.TabIndex = 6;
-            this.button6.Text = "Избриши производ";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.btnIzbrisiProizvod.Location = new System.Drawing.Point(388, 372);
+            this.btnIzbrisiProizvod.Name = "btnIzbrisiProizvod";
+            this.btnIzbrisiProizvod.Size = new System.Drawing.Size(259, 22);
+            this.btnIzbrisiProizvod.TabIndex = 6;
+            this.btnIzbrisiProizvod.Text = "Избриши производ";
+            this.btnIzbrisiProizvod.UseVisualStyleBackColor = true;
+            this.btnIzbrisiProizvod.Click += new System.EventHandler(this.btnIzbrisiProizvod_Click);
             // 
-            // button5
+            // btnIzbrisiMagacin
             // 
-            this.button5.Location = new System.Drawing.Point(16, 372);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(237, 22);
-            this.button5.TabIndex = 5;
-            this.button5.Text = "Избриши магацин";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.btnIzbrisiMagacin.Location = new System.Drawing.Point(16, 372);
+            this.btnIzbrisiMagacin.Name = "btnIzbrisiMagacin";
+            this.btnIzbrisiMagacin.Size = new System.Drawing.Size(237, 22);
+            this.btnIzbrisiMagacin.TabIndex = 5;
+            this.btnIzbrisiMagacin.Text = "Избриши магацин";
+            this.btnIzbrisiMagacin.UseVisualStyleBackColor = true;
+            this.btnIzbrisiMagacin.Click += new System.EventHandler(this.btnIzbrisiMagacin_Click);
             // 
-            // button3
+            // btnIzmeniProizvod
             // 
-            this.button3.Location = new System.Drawing.Point(388, 343);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(259, 23);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "Измени производ";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.btnIzmeniProizvod.Location = new System.Drawing.Point(388, 343);
+            this.btnIzmeniProizvod.Name = "btnIzmeniProizvod";
+            this.btnIzmeniProizvod.Size = new System.Drawing.Size(259, 23);
+            this.btnIzmeniProizvod.TabIndex = 4;
+            this.btnIzmeniProizvod.Text = "Измени производ";
+            this.btnIzmeniProizvod.UseVisualStyleBackColor = true;
+            this.btnIzmeniProizvod.Click += new System.EventHandler(this.btnIzmeniProizvod_Click);
             // 
-            // button4
+            // btnDodadiProizvod
             // 
-            this.button4.Location = new System.Drawing.Point(388, 314);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(259, 23);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "Додади производ";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.btnDodadiProizvod.Location = new System.Drawing.Point(388, 314);
+            this.btnDodadiProizvod.Name = "btnDodadiProizvod";
+            this.btnDodadiProizvod.Size = new System.Drawing.Size(259, 23);
+            this.btnDodadiProizvod.TabIndex = 3;
+            this.btnDodadiProizvod.Text = "Додади производ";
+            this.btnDodadiProizvod.UseVisualStyleBackColor = true;
+            this.btnDodadiProizvod.Click += new System.EventHandler(this.btnDodadiProizvod_Click);
             // 
-            // button2
+            // btnIzmeniMagacin
             // 
-            this.button2.Location = new System.Drawing.Point(16, 343);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(237, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Измени магацин";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnIzmeniMagacin.Location = new System.Drawing.Point(16, 343);
+            this.btnIzmeniMagacin.Name = "btnIzmeniMagacin";
+            this.btnIzmeniMagacin.Size = new System.Drawing.Size(237, 23);
+            this.btnIzmeniMagacin.TabIndex = 2;
+            this.btnIzmeniMagacin.Text = "Измени магацин";
+            this.btnIzmeniMagacin.UseVisualStyleBackColor = true;
+            this.btnIzmeniMagacin.Click += new System.EventHandler(this.btnIzmeniMagacin_Click);
             // 
-            // button1
+            // btnDodadiMagacin
             // 
-            this.button1.Location = new System.Drawing.Point(16, 314);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(237, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Додади магацин";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnDodadiMagacin.Location = new System.Drawing.Point(16, 314);
+            this.btnDodadiMagacin.Name = "btnDodadiMagacin";
+            this.btnDodadiMagacin.Size = new System.Drawing.Size(237, 23);
+            this.btnDodadiMagacin.TabIndex = 1;
+            this.btnDodadiMagacin.Text = "Додади магацин";
+            this.btnDodadiMagacin.UseVisualStyleBackColor = true;
+            this.btnDodadiMagacin.Click += new System.EventHandler(this.btnDodadiMagacin_Click);
             // 
             // lbProizvodVoMagacin
             // 
@@ -191,13 +211,15 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.groupBox2);
+            this.tabPage2.Controls.Add(this.btnDodadi);
             this.tabPage2.Controls.Add(this.button7);
             this.tabPage2.Controls.Add(this.groupBox1);
             this.tabPage2.Controls.Add(this.lbFakturi);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(783, 431);
+            this.tabPage2.Size = new System.Drawing.Size(840, 431);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Фактури";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -284,6 +306,7 @@
             this.cbMagacini.Name = "cbMagacini";
             this.cbMagacini.Size = new System.Drawing.Size(223, 21);
             this.cbMagacini.TabIndex = 1;
+            this.cbMagacini.SelectedIndexChanged += new System.EventHandler(this.cbMagacini_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -312,20 +335,107 @@
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // label7
+            // btnDodadi
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(385, 397);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(35, 13);
-            this.label7.TabIndex = 9;
-            this.label7.Text = "label7";
+            this.btnDodadi.Location = new System.Drawing.Point(6, 408);
+            this.btnDodadi.Name = "btnDodadi";
+            this.btnDodadi.Size = new System.Drawing.Size(75, 23);
+            this.btnDodadi.TabIndex = 9;
+            this.btnDodadi.Text = "Додади";
+            this.btnDodadi.UseVisualStyleBackColor = true;
+            this.btnDodadi.Click += new System.EventHandler(this.btnDodadi_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label12);
+            this.groupBox2.Controls.Add(this.tbKolicina1);
+            this.groupBox2.Controls.Add(this.label11);
+            this.groupBox2.Controls.Add(this.tbCena);
+            this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.tbOpis);
+            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Controls.Add(this.tbIme);
+            this.groupBox2.Location = new System.Drawing.Point(624, 21);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(200, 355);
+            this.groupBox2.TabIndex = 10;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Детали";
+            // 
+            // tbIme
+            // 
+            this.tbIme.Enabled = false;
+            this.tbIme.Location = new System.Drawing.Point(6, 32);
+            this.tbIme.Name = "tbIme";
+            this.tbIme.Size = new System.Drawing.Size(175, 20);
+            this.tbIme.TabIndex = 0;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(3, 16);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(29, 13);
+            this.label8.TabIndex = 1;
+            this.label8.Text = "Име";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(3, 55);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(33, 13);
+            this.label9.TabIndex = 3;
+            this.label9.Text = "Опис";
+            // 
+            // tbOpis
+            // 
+            this.tbOpis.Enabled = false;
+            this.tbOpis.Location = new System.Drawing.Point(6, 71);
+            this.tbOpis.Multiline = true;
+            this.tbOpis.Name = "tbOpis";
+            this.tbOpis.Size = new System.Drawing.Size(172, 64);
+            this.tbOpis.TabIndex = 2;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(3, 161);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(33, 13);
+            this.label11.TabIndex = 5;
+            this.label11.Text = "Цена";
+            // 
+            // tbCena
+            // 
+            this.tbCena.Enabled = false;
+            this.tbCena.Location = new System.Drawing.Point(6, 177);
+            this.tbCena.Name = "tbCena";
+            this.tbCena.Size = new System.Drawing.Size(175, 20);
+            this.tbCena.TabIndex = 4;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(3, 212);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(55, 13);
+            this.label12.TabIndex = 7;
+            this.label12.Text = "Количина";
+            // 
+            // tbKolicina1
+            // 
+            this.tbKolicina1.Enabled = false;
+            this.tbKolicina1.Location = new System.Drawing.Point(6, 228);
+            this.tbKolicina1.Name = "tbKolicina1";
+            this.tbKolicina1.Size = new System.Drawing.Size(175, 20);
+            this.tbKolicina1.TabIndex = 6;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(822, 481);
+            this.ClientSize = new System.Drawing.Size(872, 482);
             this.Controls.Add(this.Magacini);
             this.Name = "Form1";
             this.Text = "Магацинско работење";
@@ -335,6 +445,8 @@
             this.tabPage2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -346,15 +458,15 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.ListBox lbMagacini;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnIzmeniMagacin;
+        private System.Windows.Forms.Button btnDodadiMagacin;
         private System.Windows.Forms.ListBox lbProizvodVoMagacin;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnIzbrisiProizvod;
+        private System.Windows.Forms.Button btnIzbrisiMagacin;
+        private System.Windows.Forms.Button btnIzmeniProizvod;
+        private System.Windows.Forms.Button btnDodadiProizvod;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cbMagacini;
         private System.Windows.Forms.ListBox lbFakturi;
@@ -367,6 +479,16 @@
         private System.Windows.Forms.ComboBox cbProizvodi;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btnDodadi;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox tbIme;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox tbKolicina1;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox tbCena;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox tbOpis;
     }
 }
 

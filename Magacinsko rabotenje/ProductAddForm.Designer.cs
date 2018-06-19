@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbIme = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.tbOpis = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.nudCena = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            this.nudKolicina = new System.Windows.Forms.NumericUpDown();
+            this.btnOK = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCena)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudKolicina)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -51,12 +51,12 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Име на производ:";
             // 
-            // textBox1
+            // tbIme
             // 
-            this.textBox1.Location = new System.Drawing.Point(16, 30);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(256, 20);
-            this.textBox1.TabIndex = 1;
+            this.tbIme.Location = new System.Drawing.Point(16, 30);
+            this.tbIme.Name = "tbIme";
+            this.tbIme.Size = new System.Drawing.Size(256, 20);
+            this.tbIme.TabIndex = 0;
             // 
             // label2
             // 
@@ -67,12 +67,12 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Опис на производ:";
             // 
-            // textBox2
+            // tbOpis
             // 
-            this.textBox2.Location = new System.Drawing.Point(16, 79);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(256, 20);
-            this.textBox2.TabIndex = 1;
+            this.tbOpis.Location = new System.Drawing.Point(16, 79);
+            this.tbOpis.Name = "tbOpis";
+            this.tbOpis.Size = new System.Drawing.Size(256, 20);
+            this.tbOpis.TabIndex = 1;
             // 
             // label3
             // 
@@ -83,18 +83,18 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "Цена:";
             // 
-            // numericUpDown1
+            // nudCena
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(16, 132);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            this.nudCena.Location = new System.Drawing.Point(16, 132);
+            this.nudCena.Maximum = new decimal(new int[] {
             5000,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(95, 20);
-            this.numericUpDown1.TabIndex = 2;
-            this.numericUpDown1.Value = new decimal(new int[] {
+            this.nudCena.Name = "nudCena";
+            this.nudCena.Size = new System.Drawing.Size(95, 20);
+            this.nudCena.TabIndex = 2;
+            this.nudCena.Value = new decimal(new int[] {
             50,
             0,
             0,
@@ -109,64 +109,65 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "Количина:";
             // 
-            // numericUpDown2
+            // nudKolicina
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(177, 132);
-            this.numericUpDown2.Maximum = new decimal(new int[] {
+            this.nudKolicina.Location = new System.Drawing.Point(177, 132);
+            this.nudKolicina.Maximum = new decimal(new int[] {
             5000,
             0,
             0,
             0});
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(95, 20);
-            this.numericUpDown2.TabIndex = 2;
-            this.numericUpDown2.Value = new decimal(new int[] {
+            this.nudKolicina.Name = "nudKolicina";
+            this.nudKolicina.Size = new System.Drawing.Size(95, 20);
+            this.nudKolicina.TabIndex = 3;
+            this.nudKolicina.Value = new decimal(new int[] {
             20,
             0,
             0,
             0});
             // 
-            // button1
+            // btnOK
             // 
-            this.button1.Location = new System.Drawing.Point(16, 185);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(99, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "OK";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnOK.Location = new System.Drawing.Point(16, 185);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(99, 23);
+            this.btnOK.TabIndex = 4;
+            this.btnOK.Text = "OK";
+            this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
-            // button2
+            // btnCancel
             // 
-            this.button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button2.Location = new System.Drawing.Point(173, 185);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(99, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Cancel";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(173, 185);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(99, 23);
+            this.btnCancel.TabIndex = 5;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
             // 
             // ProductAddForm
             // 
-            this.AcceptButton = this.button1;
+            this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.button2;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(284, 232);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.numericUpDown2);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnOK);
+            this.Controls.Add(this.nudKolicina);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.nudCena);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.tbOpis);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.tbIme);
             this.Controls.Add(this.label1);
             this.Name = "ProductAddForm";
             this.Text = "ProductAddForm";
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            this.Shown += new System.EventHandler(this.ProductAddForm_Shown);
+            ((System.ComponentModel.ISupportInitialize)(this.nudCena)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudKolicina)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -175,14 +176,14 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbIme;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox tbOpis;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown nudCena;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.NumericUpDown nudKolicina;
+        private System.Windows.Forms.Button btnOK;
+        private System.Windows.Forms.Button btnCancel;
     }
 }

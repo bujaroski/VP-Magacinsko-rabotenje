@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtImeMagacin = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -43,12 +43,12 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Име на магацин";
             // 
-            // textBox1
+            // txtImeMagacin
             // 
-            this.textBox1.Location = new System.Drawing.Point(16, 30);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(221, 20);
-            this.textBox1.TabIndex = 1;
+            this.txtImeMagacin.Location = new System.Drawing.Point(16, 30);
+            this.txtImeMagacin.Name = "txtImeMagacin";
+            this.txtImeMagacin.Size = new System.Drawing.Size(221, 20);
+            this.txtImeMagacin.TabIndex = 1;
             // 
             // button1
             // 
@@ -79,10 +79,11 @@
             this.ClientSize = new System.Drawing.Size(262, 92);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtImeMagacin);
             this.Controls.Add(this.label1);
             this.Name = "AddWarehouseForm";
             this.Text = "AddWarehouseForm";
+            this.Shown += new System.EventHandler(this.AddWarehouseForm_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -91,7 +92,7 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtImeMagacin;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
     }

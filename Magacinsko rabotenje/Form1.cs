@@ -14,6 +14,10 @@ namespace Magacinsko_rabotenje
 {
     public partial class Form1 : Form
     {
+        public static Warehouse Magacin { get; set; }
+        public static bool IzmeniMagacin { get; set; }
+        public static bool IzmeniProizvod { get; set; }
+        public static Product Proizvod { get; set; }
         SqlDataAdapter adapt;
         SqlConnection sqlCon = new SqlConnection(@"Data Source=DESKTOP-0S9U6FP\MSSQLSERVER2014;initial Catalog=MarketEvidence;Integrated Security=True");
         int id = 0;
@@ -47,7 +51,25 @@ namespace Magacinsko_rabotenje
             cbProizvodi.DataSource = list;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void lbMagacini_SelectedIndexChanged(object sender, EventArgs e)
+        {
+          if(lbMagacini.SelectedItem != null)
+            {
+                DynamicParameters param = new DynamicParameters();
+                Warehouse w = (Warehouse)lbMagacini.SelectedItem;
+                int index = w.ID;
+
+                param.Add("@ID", index);
+
+                List<Product> list = sqlCon.Query<Product>("ProductWarehouseList", param,
+                    commandType: CommandType.StoredProcedure).ToList();
+                lbProizvodVoMagacin.DataSource = list;
+            }
+           
+            
+        }
+
+        private void btnDodadiMagacin_Click(object sender, EventArgs e)
         {
             AddWarehouseForm form2 = new AddWarehouseForm();
             form2.Text = "Додади нов магацин";
@@ -57,19 +79,24 @@ namespace Magacinsko_rabotenje
                 listWarehouses();
             }
         }
-        
-        private void button2_Click(object sender, EventArgs e)
+
+        private void btnIzmeniMagacin_Click(object sender, EventArgs e)
         {
             AddWarehouseForm form2 = new AddWarehouseForm();
-            form2.Text = "Измени магацин";
             
+            form2.Text = "Измени магацин";
             if (lbMagacini.SelectedIndex != -1)
             {
+                Magacin = (Warehouse)lbMagacini.SelectedItem;
+                IzmeniMagacin = true;
+                
+                
                 if (form2.ShowDialog() == DialogResult.OK)
                 {
+                    
                     WarehouseAdapterSQL.EditToDatabase(form2.magacin, lbMagacini);
                     listWarehouses();
-                }
+                } 
             }
             else
             {
@@ -77,7 +104,7 @@ namespace Magacinsko_rabotenje
             }
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void btnIzbrisiMagacin_Click(object sender, EventArgs e)
         {
             if (lbMagacini.SelectedItem != null)
             {
@@ -90,9 +117,9 @@ namespace Magacinsko_rabotenje
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void btnDodadiProizvod_Click(object sender, EventArgs e)
         {
-            if(lbMagacini.SelectedIndex == -1)
+            if (lbMagacini.SelectedIndex == -1)
             {
                 MessageBox.Show("Odberete magacin");
             }
@@ -107,29 +134,35 @@ namespace Magacinsko_rabotenje
                     listProducts();
                 }
             }
-           
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void btnIzmeniProizvod_Click(object sender, EventArgs e)
         {
             ProductAddForm form2 = new ProductAddForm();
             form2.Text = "Измени продукт";
-
-            if (lbProizvodVoMagacin.SelectedIndex != -1)
+            if(lbMagacini.SelectedIndex == -1)
             {
+                MessageBox.Show("Ве молиме изберете магацин од листата", "Одберете магацин");
+            }
+            else if (lbProizvodVoMagacin.SelectedIndex == -1)
+            {
+                MessageBox.Show("Ве молиме изберете производ од листата", "Одберете производ");
+            }
+            else 
+            {
+                Proizvod = (Product)lbProizvodVoMagacin.SelectedItem;
+                IzmeniProizvod = true;
                 if (form2.ShowDialog() == DialogResult.OK)
                 {
                     ProductAdapterSQL.EditToDatabase(form2.product, lbProizvodVoMagacin);
                     listProducts();
                 }
+                   
             }
-            else
-            {
-                MessageBox.Show("Ве молиме одберете продукт од листата", "Одберете продукт");
-            }
+
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void btnIzbrisiProizvod_Click(object sender, EventArgs e)
         {
             if (lbProizvodVoMagacin.SelectedItem != null)
             {
@@ -142,24 +175,44 @@ namespace Magacinsko_rabotenje
             }
         }
 
-        private void lbMagacini_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbMagacini_SelectedIndexChanged(object sender, EventArgs e)
         {
-          if(lbMagacini.SelectedItem != null)
+            
+            if (cbMagacini.SelectedItem != null)
             {
+                cbProizvodi.Text = "";
                 DynamicParameters param = new DynamicParameters();
-                Warehouse w = (Warehouse)lbMagacini.SelectedItem;
+                Warehouse w = (Warehouse)cbMagacini.SelectedItem;
                 int index = w.ID;
 
                 param.Add("@ID", index);
-
+                
                 List<Product> list = sqlCon.Query<Product>("ProductWarehouseList", param,
                     commandType: CommandType.StoredProcedure).ToList();
-
-                lbProizvodVoMagacin.DataSource = list;
+                cbProizvodi.DataSource = list;
             }
-           
-            
         }
-        
+
+        private void btnDodadi_Click(object sender, EventArgs e)
+        {
+            if(cbMagacini.SelectedIndex == -1)
+            {
+                MessageBox.Show("Ве молиме одберете магацин од листата", "Одберете магацин");
+            }
+            else if(cbProizvodi.SelectedIndex == -1)
+            {
+                MessageBox.Show("Ве молиме одберете производ од листата", "Одберете производ");
+            }
+            else
+            {
+                
+                Product p = (Product)cbProizvodi.SelectedItem;
+                lbFakturi.Items.Add(cbProizvodi.SelectedItem);
+                tbIme.Text = p.Name;
+                tbOpis.Text = p.Descriptionn;
+                tbKolicina1.Text = p.quantity.ToString();
+                tbCena.Text = p.Price.ToString();
+            }
+        }
     }
 }
