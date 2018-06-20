@@ -36,6 +36,7 @@
       <HintPath>..\packages\Dapper.1.50.5\lib\net451\Dapper.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -54,12 +55,15 @@
     <Compile Include="AddWarehouseForm.Designer.cs">
       <DependentUpon>AddWarehouseForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Faktura.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Invoice.cs" />
+    <Compile Include="InvoiceAdapterSQL.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="ProductAdapterSQL.cs" />
     <Compile Include="ProductAddForm.cs">
@@ -92,6 +96,19 @@
     </Compile>
     <None Include=".gitignore" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\AddWarehouseForm.datasource" />
+    <None Include="Properties\DataSources\Faktura.datasource" />
+    <None Include="Properties\DataSources\Form1.datasource" />
+    <None Include="Properties\DataSources\Invoice.datasource" />
+    <None Include="Properties\DataSources\InvoiceAdapterSQL.datasource" />
+    <None Include="Properties\DataSources\Magacinsko_rabotenje.Properties.Resources.datasource" />
+    <None Include="Properties\DataSources\Magacinsko_rabotenje.Properties.Settings.datasource" />
+    <None Include="Properties\DataSources\Product.datasource" />
+    <None Include="Properties\DataSources\ProductAdapterSQL.datasource" />
+    <None Include="Properties\DataSources\ProductAddForm.datasource" />
+    <None Include="Properties\DataSources\Program.datasource" />
+    <None Include="Properties\DataSources\Warehouse.datasource" />
+    <None Include="Properties\DataSources\WarehouseAdapterSQL.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

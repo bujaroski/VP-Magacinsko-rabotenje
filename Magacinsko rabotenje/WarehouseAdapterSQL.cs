@@ -72,12 +72,44 @@ namespace Magacinsko_rabotenje
 
         public static void DeleteFromDatabase(ListBox lbMagacini)
         {
-            SqlCommand cmd;
+            SqlCommand cmdIzbrisiWarehouse,cmdIdProizvodi,cmdIzbrisiProizvodi,cmdIzbrisiWarehouse_Product,cmd;
             sqlCon.Open();
-            cmd = new SqlCommand("delete Warehouse where ID=@ID", sqlCon);
+            // cmd = new SqlCommand("delete Warehouse where ID=@ID", sqlCon);
+            cmdIdProizvodi = new SqlCommand("select Code from Product where Code IN(select ProductId from Warehouse_Product " +
+                "where WarehouseeId = @ID) ",sqlCon);
+
+            cmdIzbrisiWarehouse_Product = new SqlCommand("delete Warehouse_Product where WarehouseeId=@ID", sqlCon);
+           // cmdIzbrisiProizvodi = new SqlCommand("delete Product where Code IN @niza",sqlCon);
+            
+            cmdIzbrisiWarehouse = new SqlCommand("delete Warehouse where ID=@ID", sqlCon);
+            cmd = new SqlCommand("delete Invoice where WarehouseId=@ID", sqlCon);
             Warehouse warehouse = (Warehouse)lbMagacini.SelectedItem;
+            cmdIdProizvodi.Parameters.AddWithValue("@ID", warehouse.ID);
+            SqlDataReader reader = cmdIdProizvodi.ExecuteReader();
+            List<Int32> idProizvodi = new List<int>();
+            while (reader.Read())
+            {
+                idProizvodi.Add(Convert.ToInt32(reader[0]));
+            }
+            reader.Close();
+            cmdIzbrisiProizvodi = new SqlCommand(String.Format("delete Product where Code IN({0})", String.Join(",", idProizvodi)),sqlCon);
+
+            cmdIzbrisiWarehouse_Product.Parameters.AddWithValue("@ID", warehouse.ID);
+           // cmdIzbrisiProizvodi.Parameters.AddWithValue("@idProizvodi", idProizvodi);
+            cmdIzbrisiWarehouse.Parameters.AddWithValue("@ID",warehouse.ID);
+
             cmd.Parameters.AddWithValue("@ID", warehouse.ID);
             cmd.ExecuteNonQuery();
+
+            cmdIzbrisiWarehouse_Product.ExecuteNonQuery();
+           // cmdIzbrisiProizvodi.ExecuteNonQuery();
+            cmdIzbrisiWarehouse.ExecuteNonQuery();
+
+
+            //  cmd = new SqlCommand("delete Warehouse_Product where WarehouseeId=@ID",sqlCon);
+            // Warehouse warehouse = (Warehouse)lbMagacini.SelectedItem;
+            //cmd.Parameters.AddWithValue("@ID", warehouse.ID);
+            // cmd.ExecuteNonQuery();
             sqlCon.Close();
             
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -23,7 +24,9 @@ namespace Magacinsko_rabotenje
         int id = 0;
         public Form1()
         {
+            
             InitializeComponent();
+            btnIzbrisiStavka.Enabled = false;
             listWarehouses();
             lbMagacini.SelectedItem = null;
             listProducts();
@@ -39,6 +42,7 @@ namespace Magacinsko_rabotenje
                 commandType: CommandType.StoredProcedure).ToList<Warehouse>();
             lbMagacini.DataSource = list;
             cbMagacini.DataSource = list;
+            cbWarehouses.DataSource = list;
         }
 
         void listProducts()
@@ -177,20 +181,8 @@ namespace Magacinsko_rabotenje
 
         private void cbMagacini_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-            if (cbMagacini.SelectedItem != null)
-            {
-                cbProizvodi.Text = "";
-                DynamicParameters param = new DynamicParameters();
-                Warehouse w = (Warehouse)cbMagacini.SelectedItem;
-                int index = w.ID;
-
-                param.Add("@ID", index);
-                
-                List<Product> list = sqlCon.Query<Product>("ProductWarehouseList", param,
-                    commandType: CommandType.StoredProcedure).ToList();
-                cbProizvodi.DataSource = list;
-            }
+            lbFakturi.Items.Clear();
+            listanjeMagacini();
         }
 
         private void btnDodadi_Click(object sender, EventArgs e)
@@ -205,13 +197,223 @@ namespace Magacinsko_rabotenje
             }
             else
             {
-                
+                   
                 Product p = (Product)cbProizvodi.SelectedItem;
-                lbFakturi.Items.Add(cbProizvodi.SelectedItem);
-                tbIme.Text = p.Name;
-                tbOpis.Text = p.Descriptionn;
-                tbKolicina1.Text = p.quantity.ToString();
-                tbCena.Text = p.Price.ToString();
+
+                int kolicina = p.quantity;
+                int kolNaracka;
+                int.TryParse(tbKolicina.Text, out kolNaracka);
+                p.Kolicina = kolNaracka;
+                if(kolNaracka > kolicina)
+                {
+                    MessageBox.Show("Нема доволно продукти на залиха");
+                }
+                else if(kolNaracka <= 0)
+                {
+                    MessageBox.Show("Внесете валиден број за количина");
+                    tbKolicina.Focus();
+                }
+                else 
+                {
+                    lbFakturi.Items.Add(cbProizvodi.SelectedItem);
+                    tbIme.Text = p.Name;
+                    tbOpis.Text = p.Descriptionn;
+                    tbKolicina1.Text = kolicina.ToString();
+                    tbCena.Text = p.Price.ToString();
+                    btnIzbrisiStavka.Enabled = true;
+                }
+                
+            }
+        }
+
+        private void btnIzbrisiStavka_Click(object sender, EventArgs e)
+        {
+            if(lbFakturi.SelectedIndex != -1)
+            {
+                lbFakturi.Items.RemoveAt(lbFakturi.SelectedIndex);
+                if(lbFakturi.Items.Count == 0)
+                {
+                    btnIzbrisiStavka.Enabled = false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Избери ставка за бришење");
+            }
+        }
+
+        private void btnGenerirajFaktura_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                if (sqlCon.State == ConnectionState.Closed)
+                    sqlCon.Open();
+                DynamicParameters param = new DynamicParameters();
+                DynamicParameters param1 = new DynamicParameters();
+
+
+
+                
+                DateTime datum = calendar.SelectionRange.Start;
+                Warehouse warehouse = (Warehouse)cbMagacini.SelectedItem;
+                int kolicina,DDV,FakturaBroj;
+                int.TryParse(tbKolicina.Text,out kolicina);
+                int.TryParse(tbDDV.Text, out DDV);
+                int.TryParse(tbFakturaBroj.Text, out FakturaBroj);
+                if (kolicina <= 0)
+                {
+                    MessageBox.Show("Внеси валиден број за количина");
+                    return;
+                }
+                if (DDV <= 0)
+                {
+                    MessageBox.Show("Внеси валиден број за ДДВ");
+                    return;
+                }
+               
+                
+                Invoice invoice = new Invoice(datum, warehouse.ID, DDV);
+
+                
+                param.Add("@DateMade", invoice.DateMade);
+                param.Add("@WarehouseID", invoice.WarehouseID);
+                param.Add("@DDV", invoice.DDV);
+               
+
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "InsertIntoInvoice";
+
+                cmd.Parameters.Add("@DateMade", SqlDbType.DateTime).Value = invoice.DateMade;
+                cmd.Parameters.Add("@WarehouseID", SqlDbType.Int).Value = invoice.WarehouseID;
+                cmd.Parameters.Add("@DDV", SqlDbType.Int).Value = invoice.DDV;
+                cmd.Parameters.Add("@ID", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.Connection = sqlCon;
+                cmd.ExecuteNonQuery();
+
+
+               
+                
+                int id = Convert.ToInt32(cmd.Parameters["@ID"].Value.ToString());
+                int cenaSoDDV = 0;
+                int cena = 0;
+
+                for (int i = 0; i < lbFakturi.Items.Count; i++)
+                {
+                    Product p = (Product)lbFakturi.Items[i];
+                    cena += p.Price * kolicina; 
+                    SqlCommand cmd1 = new SqlCommand("insert into Invoice_Product(InvoiceId,ProducttId)" +
+                        "values ('" + id + "'," + p.Code + ")", sqlCon);
+                    cmd1.ExecuteNonQuery();
+                }
+                int DDVCena = Convert.ToInt32(cena * DDV / 100);
+                cenaSoDDV = cena + DDVCena;
+                invoice.Cena = cena;
+                invoice.DDVCena = DDVCena;
+                invoice.CenaSoDDV = cenaSoDDV;
+                SqlCommand update = new SqlCommand("update Invoice set FakturaBroj=@FakturaBroj, Cena=@Cena,cenaSoDDV=@cenaSoDDV,DDVCena=@DDVCena where ID=@ID", sqlCon);
+                update.Parameters.AddWithValue("@FakturaBroj", FakturaBroj);
+                update.Parameters.AddWithValue("@Cena", cena);
+                update.Parameters.AddWithValue("@cenaSoDDV", cenaSoDDV);
+                update.Parameters.AddWithValue("@DDVCena", DDVCena);
+                update.Parameters.AddWithValue("@ID", id);
+                
+                update.ExecuteNonQuery();
+                MessageBox.Show("You did itt !!!");
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                sqlCon.Close();
+            }
+        }
+
+        public void listanjeMagacini()
+        {
+           
+            btnIzbrisiStavka.Enabled = false;
+            if (cbMagacini.SelectedItem != null)
+            {
+                cbProizvodi.Text = "";
+                DynamicParameters param = new DynamicParameters();
+                Warehouse w = (Warehouse)cbMagacini.SelectedItem;
+                int index = w.ID;
+
+                param.Add("@ID", index);
+
+                List<Product> list = sqlCon.Query<Product>("ProductWarehouseList", param,
+                    commandType: CommandType.StoredProcedure).ToList();
+                cbProizvodi.DataSource = list;
+            }
+        }
+
+        private void cbWarehouses_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lbInvoice.DataSource = null;
+            lbInvoice.Items.Clear();
+            if (cbWarehouses.SelectedIndex != -1)
+            {
+                DynamicParameters param = new DynamicParameters();
+                Warehouse w = (Warehouse)cbMagacini.SelectedItem;
+                int index = w.ID;
+
+                param.Add("@ID", index);
+
+                List<Invoice> list = sqlCon.Query<Invoice>("InvoiceList", param,
+                    commandType: CommandType.StoredProcedure).ToList();
+                lbInvoice.DataSource = list;
+            }
+        }
+
+        private void btnVcitaj_Click(object sender, EventArgs e)
+        {
+            using (IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["cn"].ConnectionString))
+            {
+                if (db.State == ConnectionState.Closed)
+                    db.Open();
+                if(cbWarehouses.SelectedIndex != -1 && lbInvoice.SelectedIndex != -1)
+                {
+                    Invoice i = (Invoice)lbInvoice.SelectedItem;
+
+                    string query = "Select pr.Name,i.FakturaBroj,i.Cena,i.DDVCena,i.CenaSoDDV " +
+                        "From Invoice i, Product pr, Invoice_Product inv " +
+                        "Where i.ID = inv.InvoiceId and pr.Code = inv.ProducttId";
+                   fakturaBindingSource.DataSource = db.Query<Faktura>(query, commandType: CommandType.Text); 
+                }
+                else
+                {
+                    fakturaBindingSource.DataSource = null; 
+                    
+                }
+
+                
+            }
+        }
+
+        private void lbInvoice_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            using (IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["cn"].ConnectionString))
+            {
+                if (db.State == ConnectionState.Closed)
+                    db.Open();
+                if (cbWarehouses.SelectedIndex != -1 && lbInvoice.SelectedIndex != -1)
+                {
+                    Invoice i = (Invoice)lbInvoice.SelectedItem;
+                   
+                    string query = "Select pr.Name,i.FakturaBroj,i.Cena,i.DDVCena,i.CenaSoDDV " +
+                        "From Invoice i, Product pr, Invoice_Product inv " +
+                        $"Where {i.ID} = inv.InvoiceId and pr.Code = inv.ProducttId";
+                    fakturaBindingSource.DataSource = db.Query<Faktura>(query, commandType: CommandType.Text);
+                }
+
+
             }
         }
     }

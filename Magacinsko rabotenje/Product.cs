@@ -14,6 +14,7 @@ namespace Magacinsko_rabotenje
         public string Descriptionn { get; set; }
         public int Price { get; set; }
         public int quantity { get; set; }
+        public int Kolicina { get; set; }
 
         public Product() { }
         public Product(string Name,string Description, int Price, int quantity)
@@ -26,7 +27,7 @@ namespace Magacinsko_rabotenje
 
         public override string ToString()
         {
-            return string.Format("{0} {1} - {2}ден. залиха:{3}", Code, Name, Price, quantity);
+            return string.Format("{0} {1} - {2}ден. залиха:{3}", Code, Name, Price, Kolicina);
         }
 
 
