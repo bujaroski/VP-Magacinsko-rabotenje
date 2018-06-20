@@ -20,7 +20,7 @@ namespace Magacinsko_rabotenje
         public static bool IzmeniProizvod { get; set; }
         public static Product Proizvod { get; set; }
         SqlDataAdapter adapt;
-        SqlConnection sqlCon = new SqlConnection(@"Data Source=DESKTOP-0S9U6FP\MSSQLSERVER2014;initial Catalog=MarketEvidence;Integrated Security=True");
+        SqlConnection sqlCon = new SqlConnection(@"Data Source=DESKTOP-AGB019C\SQLEXPRESS;initial Catalog=MarketEvidence;Integrated Security=True");
         int id = 0;
         public Form1()
         {
@@ -415,6 +415,21 @@ namespace Magacinsko_rabotenje
 
 
             }
+        }
+        Bitmap bmp;
+
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            e.Graphics.DrawImage(bmp, 0, 0);
+        }
+
+        private void btnPecati_Click(object sender, EventArgs e)
+        {
+            Graphics g = this.CreateGraphics();
+            bmp = new Bitmap(this.Size.Width, this.Size.Height, g);
+            Graphics mg = Graphics.FromImage(bmp);
+            mg.CopyFromScreen(this.Location.X, this.Location.Y, 0, 0, this.Size);
+            printPreviewDialog1.ShowDialog();
         }
     }
 }

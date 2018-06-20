@@ -12,7 +12,7 @@ namespace Magacinsko_rabotenje
 {
     class InvoiceAdapterSQL
     {
-        public static SqlConnection sqlCon = new SqlConnection(@"Data Source=DESKTOP-0S9U6FP\MSSQLSERVER2014;initial Catalog=MarketEvidence;Integrated Security=True");
+        public static SqlConnection sqlCon = new SqlConnection(@"Data Source=DESKTOP-AGB019C\SQLEXPRESS;initial Catalog=MarketEvidence;Integrated Security=True");
         public static void SaveToDatabase(Invoice invoice, Warehouse warehouse)
         {
             try

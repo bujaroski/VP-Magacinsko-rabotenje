@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.Magacini = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label2 = new System.Windows.Forms.Label();
@@ -69,6 +70,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lbFakturi = new System.Windows.Forms.ListBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fakturaBrojDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cenaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dDVCenaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cenaSoDDVDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fakturaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnPecati = new System.Windows.Forms.Button();
             this.btnVcitaj = new System.Windows.Forms.Button();
             this.dtToDate = new System.Windows.Forms.DateTimePicker();
@@ -78,22 +86,17 @@
             this.lbInvoice = new System.Windows.Forms.ListBox();
             this.groupBox = new System.Windows.Forms.GroupBox();
             this.cbWarehouses = new System.Windows.Forms.ComboBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fakturaBrojDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cenaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dDVCenaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cenaSoDDVDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fakturaBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.Magacini.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage3.SuspendLayout();
-            this.groupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fakturaBindingSource)).BeginInit();
+            this.groupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // Magacini
@@ -505,6 +508,56 @@
             this.tabPage3.Text = "Листање и печатење фактури";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AutoGenerateColumns = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.nameDataGridViewTextBoxColumn,
+            this.fakturaBrojDataGridViewTextBoxColumn,
+            this.cenaDataGridViewTextBoxColumn,
+            this.dDVCenaDataGridViewTextBoxColumn,
+            this.cenaSoDDVDataGridViewTextBoxColumn});
+            this.dataGridView1.DataSource = this.fakturaBindingSource;
+            this.dataGridView1.Location = new System.Drawing.Point(33, 274);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(801, 259);
+            this.dataGridView1.TabIndex = 9;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            // 
+            // fakturaBrojDataGridViewTextBoxColumn
+            // 
+            this.fakturaBrojDataGridViewTextBoxColumn.DataPropertyName = "FakturaBroj";
+            this.fakturaBrojDataGridViewTextBoxColumn.HeaderText = "FakturaBroj";
+            this.fakturaBrojDataGridViewTextBoxColumn.Name = "fakturaBrojDataGridViewTextBoxColumn";
+            // 
+            // cenaDataGridViewTextBoxColumn
+            // 
+            this.cenaDataGridViewTextBoxColumn.DataPropertyName = "Cena";
+            this.cenaDataGridViewTextBoxColumn.HeaderText = "Cena";
+            this.cenaDataGridViewTextBoxColumn.Name = "cenaDataGridViewTextBoxColumn";
+            // 
+            // dDVCenaDataGridViewTextBoxColumn
+            // 
+            this.dDVCenaDataGridViewTextBoxColumn.DataPropertyName = "DDVCena";
+            this.dDVCenaDataGridViewTextBoxColumn.HeaderText = "DDVCena";
+            this.dDVCenaDataGridViewTextBoxColumn.Name = "dDVCenaDataGridViewTextBoxColumn";
+            // 
+            // cenaSoDDVDataGridViewTextBoxColumn
+            // 
+            this.cenaSoDDVDataGridViewTextBoxColumn.DataPropertyName = "CenaSoDDV";
+            this.cenaSoDDVDataGridViewTextBoxColumn.HeaderText = "CenaSoDDV";
+            this.cenaSoDDVDataGridViewTextBoxColumn.Name = "cenaSoDDVDataGridViewTextBoxColumn";
+            // 
+            // fakturaBindingSource
+            // 
+            this.fakturaBindingSource.DataSource = typeof(Magacinsko_rabotenje.Faktura);
+            // 
             // btnPecati
             // 
             this.btnPecati.Location = new System.Drawing.Point(728, 539);
@@ -513,6 +566,7 @@
             this.btnPecati.TabIndex = 8;
             this.btnPecati.Text = "Печати";
             this.btnPecati.UseVisualStyleBackColor = true;
+            this.btnPecati.Click += new System.EventHandler(this.btnPecati_Click);
             // 
             // btnVcitaj
             // 
@@ -584,55 +638,20 @@
             this.cbWarehouses.TabIndex = 0;
             this.cbWarehouses.SelectedIndexChanged += new System.EventHandler(this.cbWarehouses_SelectedIndexChanged);
             // 
-            // dataGridView1
+            // printDocument1
             // 
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.nameDataGridViewTextBoxColumn,
-            this.fakturaBrojDataGridViewTextBoxColumn,
-            this.cenaDataGridViewTextBoxColumn,
-            this.dDVCenaDataGridViewTextBoxColumn,
-            this.cenaSoDDVDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.fakturaBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(33, 274);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(801, 259);
-            this.dataGridView1.TabIndex = 9;
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
             // 
-            // nameDataGridViewTextBoxColumn
+            // printPreviewDialog1
             // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            // 
-            // fakturaBrojDataGridViewTextBoxColumn
-            // 
-            this.fakturaBrojDataGridViewTextBoxColumn.DataPropertyName = "FakturaBroj";
-            this.fakturaBrojDataGridViewTextBoxColumn.HeaderText = "FakturaBroj";
-            this.fakturaBrojDataGridViewTextBoxColumn.Name = "fakturaBrojDataGridViewTextBoxColumn";
-            // 
-            // cenaDataGridViewTextBoxColumn
-            // 
-            this.cenaDataGridViewTextBoxColumn.DataPropertyName = "Cena";
-            this.cenaDataGridViewTextBoxColumn.HeaderText = "Cena";
-            this.cenaDataGridViewTextBoxColumn.Name = "cenaDataGridViewTextBoxColumn";
-            // 
-            // dDVCenaDataGridViewTextBoxColumn
-            // 
-            this.dDVCenaDataGridViewTextBoxColumn.DataPropertyName = "DDVCena";
-            this.dDVCenaDataGridViewTextBoxColumn.HeaderText = "DDVCena";
-            this.dDVCenaDataGridViewTextBoxColumn.Name = "dDVCenaDataGridViewTextBoxColumn";
-            // 
-            // cenaSoDDVDataGridViewTextBoxColumn
-            // 
-            this.cenaSoDDVDataGridViewTextBoxColumn.DataPropertyName = "CenaSoDDV";
-            this.cenaSoDDVDataGridViewTextBoxColumn.HeaderText = "CenaSoDDV";
-            this.cenaSoDDVDataGridViewTextBoxColumn.Name = "cenaSoDDVDataGridViewTextBoxColumn";
-            // 
-            // fakturaBindingSource
-            // 
-            this.fakturaBindingSource.DataSource = typeof(Magacinsko_rabotenje.Faktura);
+            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreviewDialog1.Document = this.printDocument1;
+            this.printPreviewDialog1.Enabled = true;
+            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
+            this.printPreviewDialog1.Name = "printPreviewDialog1";
+            this.printPreviewDialog1.Visible = false;
             // 
             // Form1
             // 
@@ -653,9 +672,9 @@
             this.groupBox1.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
-            this.groupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fakturaBindingSource)).EndInit();
+            this.groupBox.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -718,6 +737,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dDVCenaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn cenaSoDDVDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource fakturaBindingSource;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
     }
 }
 
